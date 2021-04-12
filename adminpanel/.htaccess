@@ -1,0 +1,37 @@
+
+
+<IfModule mod_php5.c>
+    #Session timeout
+    #php_value session.cookie_lifetime 900
+    #900 = 15 dakika
+    #php_value session.gc_maxlifetime 900
+    php_value upload_max_filesize 128M
+    php_value post_max_size 128M
+</IfModule>
+
+
+
+SetEnvIf Request_URI "^/adminpanel/url"  require_auth=true
+
+AuthType Basic
+AuthName "Sifre Korumali Alan"
+#Sunucuda 
+#AuthUserFile /home/u7649500/testsitesi.xyz/myboxcont/.htpasswd
+
+
+#Localhost 
+AuthUserFile D:/wamp64/www/BlogPostAdmin/adminpanel/.htpasswd
+require valid-user
+Options +FollowSymLinks
+Order Deny,Allow
+Satisfy any
+Deny from All
+Require valid-user
+Allow from env=require_auth
+
+
+
+# güvenlik için sunucuya yukleyince yorum satırlarını değiştir
+#SSLOptions +StrictRequire
+#SSLRequireSSL
+#SSLRequire %{HTTP_HOST} eq "www.testsitesi.xyz"
