@@ -16,7 +16,7 @@ SetEnvIf Request_URI "^/adminpanel/url"  require_auth=true
 AuthType Basic
 AuthName "Sifre Korumali Alan"
 #Sunucuda 
-#AuthUserFile /home/u7649500/testsitesi.xyz/myboxcont/.htpasswd
+#AuthUserFile /home/u7649500/site adresi/.htpasswd
 
 
 #Localhost 
