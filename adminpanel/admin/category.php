@@ -3,11 +3,11 @@ include("includes/header.php");
 ?>
 
 <?php 
-include '../../classes/Category.php';
+include '../../classes/Categories.php';
 include_once '../../helpers/Format.php';
 ?>
 <?php 
-  $cat =  new Category();
+  $cat =  new Categories();
   $fm =  new Format();
 
   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST))
@@ -16,7 +16,7 @@ include_once '../../helpers/Format.php';
       switch(true){
 
         case $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['catBtn']): 
-            $insertedCat = $cat->catInsert($_POST);
+            $insertedCat = $cat->catInsert($_POST, $_FILES);
             break;
         case $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteBtn']): 
             $id = $_POST['deleteId'];
@@ -39,15 +39,18 @@ include_once '../../helpers/Format.php';
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?php echo $_SERVER['PHP_SELF'] ?>?id=#backCategory" method="POST" id="backCategory">
+      <form action="<?php echo $_SERVER['PHP_SELF'] ?>?id=#backCategory" method="POST"  enctype="multipart/form-data" id="backCategory">
 
         <div class="modal-body">
 
             <div class="form-group">
                 <label> Category Name </label>
-                <input type="text" name="catName" class="form-control" placeholder="Enter Category">
+                <input type="text" name="name" class="form-control" placeholder="Enter Category">
             </div>
-            
+            <div class="form-group">
+                <label>Category Icon</label>
+                <input type="file" required="required" name="myicon" class="form-control"  placeholder="Foto Seçiniz... ">
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,6 +90,7 @@ include_once '../../helpers/Format.php';
             <tr>
                 <th class="text-center">No </th>
                 <th class="text-center">Category Name</th>
+                <th class="text-center">Category icon</th>
                 <th class="text-center">Edit</th>
                 <th class="text-center">Delete</th>
             </tr>
@@ -95,6 +99,7 @@ include_once '../../helpers/Format.php';
             <tr>
                 <th class="text-center">No </th>
                 <th class="text-center">Category Name</th>
+                <th class="text-center">Category icon</th>
                 <th class="text-center">Edit</th>
                 <th class="text-center">Delete</th>
             </tr>
@@ -110,17 +115,31 @@ include_once '../../helpers/Format.php';
         ?> 
             <tr>
                 <td class="sorting_1 tdStyle"><?php echo $i; ?></td>
-                <td class="tdStyle"><?php echo $fm->validation($value['catName']); ?></td>
-                <td class="tdStyle">
-                <style>
+                <td class="tdStyle"><?php echo $fm->validation($value['name']); ?></td>
+                <div class="form-group">
+                 
+                 <?php
+                 
+                 if(strlen($fm->validation($value['icon']))>0)
+                 {
+                     echo '<td class="tdStyle"><img width="80" height="60" src="'.$value['icon'].'" /></td>';
+                 }
+                 else{
+                  echo '<td class="tdStyle"><img width="120" height="60" src="../../uploads/noimage.png" /></td>';
+                 }
+                 
+                 ?>
+                 </div>
+                 <td class="tdStyle">
+                 <style>
                   .tdStyle{
                   vertical-align:middle !important;
                   align-items:center;
                   text-align:center;     
                     }
-                  
-                @media only screen and (max-width: 1136px)
-                {
+                
+                 @media only screen and (max-width: 1136px)
+                 {
                  .customSize
                   {
                     width:100px !important;
@@ -133,7 +152,7 @@ include_once '../../helpers/Format.php';
                       {
                         margin-right: 30px !important;
                       }
-                {
+                    }
                 </style>
                 
                 <form action="categori_edit.php" class="customSize" style=" margin-left: 30px" method="post">    

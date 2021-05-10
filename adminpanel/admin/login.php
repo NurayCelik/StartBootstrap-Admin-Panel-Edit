@@ -104,7 +104,7 @@ $al   = new Adminlogin(); // create object
                                             </div>
                                         </div>
                                         <!--<a href="index.php" class="btn btn-primary btn-user btn-block"> -->
-                                        <button type="submit" name="loginbtn" class="btn btn-primary">Login</button>
+                                        <button type="submit" name="loginbtn" class="btn btn-primary btn-user btn-block">Login</button>
                                         <!--  </a> -->
 
                                         <!-- <hr>

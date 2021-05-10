@@ -1,14 +1,14 @@
 <?php
 include("includes/header.php");
-include '../../classes/User.php'; 
+include '../../classes/Admin.php'; 
 include_once '../../helpers/Format.php';
 ?>
 <?php 
-  $us =  new User();
+  $ad =  new Admin();
   $fm =  new Format();
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updatebtn'])){ 
-        $updatedAdmin = $us->adminUpdate($_POST, 1);
+        $updatedAdmin = $ad->adminUpdate($_POST, 1);
   }
 
  ?>
@@ -30,7 +30,7 @@ include_once '../../helpers/Format.php';
         <div class="card-body">
        
     <?php 
-        $adminData = $us->getAdminIdData(); // Create this method in our User.php Class
+        $adminData = $ad->getAdminIdData(); // Create this method in our User.php Class
         if ($adminData) {
         while ($value = $adminData->fetch_assoc()) { 
     ?> 

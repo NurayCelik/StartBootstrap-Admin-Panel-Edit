@@ -1,10 +1,10 @@
 <?php
 include("includes/header.php");
-include '../../classes/User.php'; 
+include '../../classes/Admin.php'; 
 include_once '../../helpers/Format.php';
 ?>
 <?php 
-  $us =  new User();
+  $ad =  new Admin();
   $fm =  new Format();
   
  
@@ -16,7 +16,7 @@ include_once '../../helpers/Format.php';
   }
  if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updatebtn'])){ 
       $idn = $_POST['formId'];
-      $updatedAdmin = $us->adminUpdate($_POST, $idn);
+      $updatedAdmin = $ad->adminUpdate($_POST, $idn);
   }
 
  ?>
@@ -32,13 +32,13 @@ include_once '../../helpers/Format.php';
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"> EDIT USER PROFILE </h6>
+            <h6 class="m-0 font-weight-bold text-primary"> YÖNETİCİ PROFİLİ DÜZENLE </h6>
         </div>
         <div class="card-body">
 
         <?php
           
-           $adminData = $us->getAdminId(@$id); // Create this method in our User.php Class
+           $adminData = $ad->getAdminId(@$id); // Create this method in our User.php Class
            if($adminData) {
             while ($value = $adminData->fetch_assoc()) { 
        ?> 
@@ -57,9 +57,9 @@ include_once '../../helpers/Format.php';
                 <small class="error_email" style="color: red;"></small>
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label>Password (minimum 5 karakter):</label>
                 <!-- readonly="readonly" sadece okunur yapar veya disabled="disabled" de sadece okunur yapar -->
-                <input type="text" required="required" name="password" value="<?php echo $fm->validation($value['password']); ?>" class="form-control" value="<?php echo $fm->validation($value['password']); ?>" placeholder="Enter Password">
+                <input type="password" minlength="5" required="required" name="password" value="<?php //echo $fm->validation($value['password']); ?>" class="form-control" value="<?php echo $fm->validation($value['password']); ?>" placeholder="Enter Password">
             </div>
             <div class="form-group">
                 <label>User Type</label>

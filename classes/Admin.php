@@ -6,7 +6,7 @@ include_once($filepath.'/../helpers/Format.php');
 ?>
  
 <?php
-class User{
+class Admin{
 	private $db;  // I crate Property for Database Class
 	private $fm; // I crate Property for Format Class  
  
@@ -15,24 +15,27 @@ class User{
        $this->fm   = new Format(); // I crate Object for Format Class  
 	}
 
-  public function getUserData(){
-      $query = "SELECT * FROM users ORDER BY userId DESC";
+  public function getAdminData(){
+      $query = "SELECT * FROM admin where id > 1";
       $result = $this->db->select($query);
       return $result;
 
   }
-
-   public function getAdminId($id){
-    $query = "SELECT * FROM users where userId = '$id'";
+  public function getAdminIdData(){
+    $query = "SELECT * FROM admin where id = 1";
     $result = $this->db->select($query);
     return $result;
 
    }
+   public function getAdminId($id){
+    $query = "SELECT * FROM admin where id = '$id'";
+    $result = $this->db->select($query);
+    return $result;
 
-   /*
+   }
    public function deleteUser($id){
 
-    $query = "DELETE FROM users WHERE userId = '$id' ";
+    $query = "DELETE FROM admin WHERE id = '$id' ";
     $deletedData = $this->db->delete($query);
     if ($deletedData) {
       $msg = "<span class='success' style='color:forestgreen;'>Delete Succesfully.</span> ";
@@ -140,7 +143,7 @@ class User{
             }
         }
 
-  } 
+  }
     public function adminUpdate($data, $id){
       $adminPas    =  $this->fm->validation($data['password']);
       $adminPass   =  mysqli_real_escape_string($this->db->link, stripslashes($adminPas));
@@ -230,9 +233,9 @@ class User{
         {
           die($e->getMessage());
             }
-        } 
+        }
  }
-*/
+
  
 
 }

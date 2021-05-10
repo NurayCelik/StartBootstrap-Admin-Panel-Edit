@@ -30,7 +30,7 @@ include_once '../../helpers/Format.php';
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Yönetici Ekle</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,8 +40,8 @@ include_once '../../helpers/Format.php';
         <div class="modal-body">
 
             <div class="form-group">
-                <label> Username </label>
-                <input type="text" name="username" class="form-control" placeholder="Enter Username">
+                <label> Yönetici Adı </label>
+                <input type="text" name="username" class="form-control" placeholder="Enter Name">
             </div>
             <div class="form-group">
                 <label>Email</label>
@@ -49,16 +49,16 @@ include_once '../../helpers/Format.php';
                 <small class="error_email" style="color: red;"></small>
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+            <label>Password (minimum 5 karakter):</label>
+                <input type="password" minlength="5" name="password" class="form-control" placeholder="Enter Password">
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
                 <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password">
             </div>
             <div class="form-group">
-                <label>User Type</label>
-                <input type="text" name="usertype" class="form-control" placeholder="Enter Usertype">
+                <label>Görevi</label>
+                <input type="text" name="usertype" class="form-control" placeholder="Enter business-mission">
             </div>
 
 
@@ -86,9 +86,9 @@ include_once '../../helpers/Format.php';
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Users
+        <h6 class="m-0 font-weight-bold text-primary">Yöneticiler
         <button type="button"  style="float:right;" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
-        <i class="fas fa-plus-square"></i> User
+        <i class="fas fa-plus-square"></i> Yönetici
         </button>
         </h6>
     </div>
@@ -99,9 +99,9 @@ include_once '../../helpers/Format.php';
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">UserName</th>
+                        <th class="text-center">Yönetici Adı</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">UserType</th>
+                        <th class="text-center">Görev</th>
                         <th class="text-center">Edit</th>
                         <th class="text-center">Delete</th>
                     </tr>
@@ -110,9 +110,9 @@ include_once '../../helpers/Format.php';
                 <tfoot><!-- En Alt satırda da başlıklar cıkacak -->
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">UserName</th>
+                        <th class="text-center">Yönetici Adı</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">UserType</th>
+                        <th class="text-center">Görev</th>
                         <th class="text-center">Edit</th>
                         <th class="text-center">Delete</th>
                     </tr>

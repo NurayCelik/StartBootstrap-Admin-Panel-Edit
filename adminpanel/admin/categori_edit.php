@@ -1,11 +1,11 @@
 <?php
 include("includes/header.php");
 
-include '../../classes/Category.php';
+include '../../classes/Categories.php';
 include_once '../../helpers/Format.php';
 ?>
 <?php 
-  $cat =  new Category();
+  $cat =  new Categories();
   $fm =  new Format();
 
  
@@ -17,7 +17,7 @@ include_once '../../helpers/Format.php';
      }
  if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updatebtn'])){ 
       $idn = $_POST['formId'];
-      $editedCat = $cat->catUpdate($_POST, $idn);
+      $editedCat = $cat->catUpdate($_POST, $_FILES, $idn);
   }
 
  ?>
@@ -44,14 +44,34 @@ include_once '../../helpers/Format.php';
             while ($value = $catData->fetch_assoc()) { 
        ?> 
 
-        <form action="" method="POST" id="">
+        <form action="" method="POST" enctype="multipart/form-data" id="">
 
         <div class="modal-body">
 
             <div class="form-group">
                 <label> Categori AAd </label>
-                <input type="text" required="required" name="catName" class="form-control" 
-                value="<?php  echo $fm->validation($value['catName']); ?>">
+                <input type="text" required="required" name="name" class="form-control" 
+                value="<?php  echo $fm->validation($value['name']); ?>">
+            </div>
+            <div class="form-group">
+               <label> Eski Foto </label><br>
+               <img width="300" height="200"
+               <?php
+               if(strlen($fm->validation($value['icon']))>0)
+               {
+                   echo 'src="'.$value['icon'].'">';
+               }
+               else{
+                echo 'src="../../uploads/noimage.png">';
+               }
+               
+               ?>
+               </div>
+               <br>
+            
+            <div class="form-group">
+               <label> Foto Seç : </label><br>
+               <input type="file" name="myicon"/>
             </div>
             
             <div class="form-group">
